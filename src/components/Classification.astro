@@ -1,9 +1,17 @@
 ---
+// Importo el paquete dotenv e inicialízo
+import dotenv from 'dotenv';
+dotenv.config();
+
+//const apiKey = process.env.API_KEY;
+const apiKey = import.meta.env.API_KEY;
+
+
 const url = 'https://api-formula-1.p.rapidapi.com/rankings/drivers?season=2023';
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '56f9dd9624msh2e1a4a6a24767a5p1d0081jsnfbb7cfd4dcbc',
+		'X-RapidAPI-Key': apiKey,
 		'X-RapidAPI-Host': 'api-formula-1.p.rapidapi.com'
 	}
 };
