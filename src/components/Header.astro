@@ -1,0 +1,24 @@
+---
+import HeaderButton from "./HeaderButton.astro";
+---
+
+<header class="py-8 px-4 mx-auto max-w-xl lg:py-16 lg:px-6">
+    <div class="mx-auto text-center mb-8 lg:mb-16">
+        <h2 class="mb-4 text-5xl tracking-tight font-extrabold text-white">
+            F1 Stadistics 🏎️
+        </h2>
+        <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">
+            All the information about F1 Grandpix
+        </p>
+
+        <nav
+            class="flex flex-col items-center justify-between w-full text-center md:flex-row"
+        >
+            <HeaderButton class="text-white" href="/">F1 2023</HeaderButton>
+            <HeaderButton class="text-white" href="/drivers">Drivers</HeaderButton>
+            <HeaderButton class="text-white" href="/teams">Teams</HeaderButton>
+            <HeaderButton class="text-white" href="/circuits">Circuits</HeaderButton>
+
+        </nav>
+    </div>
+</header>
