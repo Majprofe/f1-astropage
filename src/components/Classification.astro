@@ -1,29 +1,41 @@
 ---
 // Importo el paquete dotenv e inicialízo
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
-//const apiKey = process.env.API_KEY;
+// Use import.meta.env in the browser environment
 const apiKey = import.meta.env.API_KEY;
 
+async function getDrivers() {
+  const storedDrivers = localStorage.getItem("drivers");
+  if (storedDrivers) {
+    return JSON.parse(storedDrivers);
+  } else {
+    const url =
+      "https://api-formula-1.p.rapidapi.com/rankings/drivers?season=2023";
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": apiKey,
+        "X-RapidAPI-Host": "api-formula-1.p.rapidapi.com",
+      },
+    };
 
-const url = 'https://api-formula-1.p.rapidapi.com/rankings/drivers?season=2023';
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': apiKey,
-		'X-RapidAPI-Host': 'api-formula-1.p.rapidapi.com'
-	}
-};
-
-try {
-	const response = await fetch(url, options);
-	const result = await response.json();
-	console.log(result.response[0]);
-} catch (error) {
-	console.error(error);
+    try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      console.log(result.response);
+      localStorage.setItem("drivers", JSON.stringify(result.response));
+      return result.response;
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
----
-<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 
-</div>
+const drivers = await getDrivers();
+
+console.log(drivers)
+---
+
+<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"></div>
